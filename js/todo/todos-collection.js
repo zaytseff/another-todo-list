@@ -48,6 +48,6 @@ class TodoList extends Collection {
 }
 
 // Create Todos List
-var Todos = new TodoList(); // let
+let Todos = new TodoList();
 
 export default Todos;

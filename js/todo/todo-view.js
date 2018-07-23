@@ -83,7 +83,7 @@ class TodoView extends View {
     this.inputTitle.focus();
   }
   saveTitle() {
-    const title = this.inputTitle.val(); // const
+    const title = this.inputTitle.val();
 
     if (title) {
       this.model.save({ title });
@@ -94,7 +94,7 @@ class TodoView extends View {
     this.inputTitle.attr('disabled', 'disabled');
     this.$el.removeClass('editing');
   }
-  // On keypress "Enter" update
+  
   updateTitleOnEnter(e) {
     if (e.which === ENTER_KEY) {
       this.saveTitle();
@@ -108,7 +108,7 @@ class TodoView extends View {
     this.inputDate.focus();
   }
   saveDate() {
-    const date = this.inputDate.val(); // const
+    const date = this.inputDate.val();
     this.inputDate.attr('disabled');
 
     if (date) {
@@ -120,7 +120,6 @@ class TodoView extends View {
     this.$el.removeClass('editing');
   }
 
-  // On keypress "Enter" update
   updateDateOnEnter(e) {
     if (e.which === ENTER_KEY) {
       this.saveDate();

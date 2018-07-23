@@ -16,27 +16,29 @@ class AppView extends View {
     super();
 
     this.setElement($('#todoapp'), true);
-
     this.statsTemplate = _.template(stat_tpl),
 
-    // *Delegate events for creating new items and clearing completed ones.*
+    // Set events
     this.events = {
       'keypress #new-todo': 'createOnEnter',
       'click #clear-completed': 'clearCompleted',
       'click #toggle-all': 'toggleAllComplete'
     };
 
-    this.allCheckbox = this.$('#toggle-all')[0];
+    // Get elements
+    this.allCheckbox = this.$('#toggle-all');
     this.$input = this.$('#new-todo');
     this.$footer = this.$('#footer');
     this.$main = this.$('#main');
 
+    // Set listeners
     this.listenTo(Todos, 'add', this.addOne);
     this.listenTo(Todos, 'reset', this.addAll);
     this.listenTo(Todos, 'change:completed', this.filterOne);
     this.listenTo(Todos, 'filter', this.filterAll);
     this.listenTo(Todos, 'all', this.render);
 
+    // Get Todos collection data from storage
     Todos.fetch();
 
     // super(); /// Error when super() call after this!!!!
@@ -46,8 +48,8 @@ class AppView extends View {
 
   // RENDER HERE
   render() {
-    const completed = Todos.done().length; // const
-    const remaining = Todos.left().length; // const
+    const completed = Todos.done().length;
+    const remaining = Todos.left().length;
     let currentRoute = Backbone.history.fragment;
 
     if (Todos.length) {
@@ -73,7 +75,7 @@ class AppView extends View {
   }
 
   addOne(model) {
-    var view = new TodoView({ model }); // const
+    const view = new TodoView({ model });
     $('#todo-list').append(view.render().el);
   }
 
@@ -90,6 +92,7 @@ class AppView extends View {
     Todos.each(this.filterOne, this);
   }
 
+  // Set attributes for new item
   newAttributes() {
     return {
       title: this.$input.val().trim(),
@@ -115,7 +118,7 @@ class AppView extends View {
   }
 
   toggleAllComplete() {
-    var completed = this.allCheckbox.checked; // const
+    const completed = this.allCheckbox.checked;
     Todos.each(todo => todo.save({ completed }));
   }
 }
