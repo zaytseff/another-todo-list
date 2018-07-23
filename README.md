@@ -3,6 +3,7 @@
 
 Written on Bacbone with ES6 modules
 
+[See demo](https://zaytseff.ru/todos/index.html)
 
 #### How to install:
 
